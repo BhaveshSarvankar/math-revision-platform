@@ -1,0 +1,15 @@
+{
+  "name": "math-platform-backend",
+  "version": "1.0.0",
+  "description": "MAH-MBA-CET Quantitative Aptitude Math Revision & Practice Platform",
+  "main": "api/index.js",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^17.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.1"
+  }
+}

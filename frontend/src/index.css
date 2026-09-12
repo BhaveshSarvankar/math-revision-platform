@@ -1,0 +1,97 @@
+/* Plain CSS Design System - Math Revision & Practice Platform */
+
+/* LIGHT THEME (Mint/Blue Light Palette) */
+:root, [data-theme="light"] {
+  --bg-primary: #f0fdf4;
+  --bg-card: #f7fef9;
+  --bg-input: #ffffff;
+  --bg-navbar: #ffffff;
+  --accent: #3b82f6;
+  --accent-hover: #1d4ed8;
+  --accent-secondary: #10b981;
+  --accent-secondary-hover: #059669;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #d1fae5;
+  --input-border: #cbd5e1;
+  --success: #10b981;
+  --warning: #d97706;
+}
+
+/* DARK THEME (Sleek Slate/Dark Mode) */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-input: #0f172a;
+  --bg-navbar: #1e293b;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-secondary: #10b981;
+  --accent-secondary-hover: #34d399;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --input-border: #475569;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+/* NIGHT THEME (Warm Dim/Amber Low Blue-Light Mode) */
+[data-theme="night"] {
+  --bg-primary: #1a1410;
+  --bg-card: #261e18;
+  --bg-input: #1a1410;
+  --bg-navbar: #261e18;
+  --accent: #d97706;
+  --accent-hover: #f59e0b;
+  --accent-secondary: #059669;
+  --accent-secondary-hover: #10b981;
+  --text-main: #e8d5b7;
+  --text-muted: #a8947d;
+  --border: #3d3027;
+  --input-border: #524237;
+  --success: #059669;
+  --warning: #d97706;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: var(--bg-primary); color: var(--text-main); line-height: 1.6; min-height: 100vh; transition: background-color 0.25s, color 0.25s; }
+
+.navbar { display: flex; justify-content: space-between; align-items: center; background: var(--bg-navbar); padding: 1rem 2rem; border-bottom: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); transition: background 0.25s, border-color 0.25s; }
+.nav-brand { font-size: 1.25rem; font-weight: bold; color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 0.5rem; }
+.nav-links button { background: none; border: none; color: var(--text-muted); padding: 0.5rem 1rem; cursor: pointer; font-size: 0.95rem; font-weight: 500; border-radius: 6px; transition: 0.2s; }
+.nav-links button.active, .nav-links button:hover { color: var(--accent); background: var(--border); font-weight: 600; }
+.btn-logout { background: #ef4444 !important; color: white !important; border-radius: 6px; }
+
+/* TASK 1: Widened container layout for desktop windows */
+.container { max-width: 1100px; width: 92%; margin: 2rem auto; padding: 0 1rem; }
+.auth-box { max-width: 520px; width: 100%; margin: 3rem auto; background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+.auth-box h2 { margin-bottom: 1.5rem; text-align: center; color: var(--accent); }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted); }
+.form-group input, .form-group select { width: 100%; padding: 0.75rem; background: var(--bg-input); border: 1px solid var(--input-border); color: var(--text-main); border-radius: 6px; }
+.form-group input:focus, .form-group select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+
+.btn { width: 100%; padding: 0.75rem; background: var(--accent); color: #ffffff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+.btn:hover { background: var(--accent-hover); color: white; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.formula-card { background: var(--bg-card); border-radius: 10px; padding: 1.25rem; border: 1px solid var(--border); border-left: 4px solid var(--accent-secondary); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+.card-tag { display: inline-block; background: var(--accent-secondary); color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+.formula-eq { background: var(--bg-input); border: 1px solid var(--input-border); padding: 0.75rem; border-radius: 6px; font-family: monospace; color: var(--accent); margin: 0.75rem 0; font-weight: 600; }
+
+.quiz-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); width: 100%; }
+.timer-badge { background: #f59e0b; color: #ffffff; font-weight: bold; padding: 0.4rem 0.8rem; border-radius: 20px; float: right; }
+.options-grid { display: grid; gap: 0.75rem; margin: 1.5rem 0; }
+.option-btn { background: var(--bg-input); border: 1px solid var(--input-border); color: var(--text-main); padding: 1rem; border-radius: 8px; text-align: left; cursor: pointer; transition: 0.2s; }
+.option-btn:hover { border-color: var(--accent); background: var(--bg-card); }
+.option-btn.selected { background: var(--accent); border-color: var(--accent); color: white; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+.stat-value { font-size: 2rem; font-weight: bold; color: var(--accent); }
+
+.data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.data-table th, .data-table td { padding: 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+.data-table th { background: var(--border); color: var(--text-main); font-size: 0.85rem; font-weight: 600; }
