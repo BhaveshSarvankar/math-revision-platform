@@ -10,9 +10,9 @@ export default function Navbar({ activePage, setActivePage, user, onLogout }) {
         <nav className="navbar">
             <div className="nav-brand">MAH-MBA-CET Math Practice</div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div className="nav-controls">
                 {/* VIVA: 3-Theme Selector control for Light, Dark, and Night modes */}
-                <div style={{ display: 'flex', gap: '0.2rem', background: 'var(--border)', padding: '0.2rem', borderRadius: '6px' }}>
+                <div className="theme-toggle-group">
                     <button
                         style={{
                             padding: '0.25rem 0.55rem',
