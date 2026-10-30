@@ -1,11 +1,15 @@
 // frontend/src/pages/DashboardPage.js
-// Purpose: Student performance dashboard displaying summary cards, score chart, and quiz history table.
+// Purpose: Student performance dashboard displaying recommendation card, summary cards, performance matrix, score chart, and quiz history table.
 import React, { useState, useEffect } from 'react';
 import ScoreChart from '../components/ScoreChart';
+import RecommendationCard from '../components/RecommendationCard';
+import PerformanceMatrix from '../components/PerformanceMatrix';
 
-export default function DashboardPage() {
+export default function DashboardPage({ onStartRecommended }) {
     const [summary, setSummary] = useState({ totalQuizzes: 0, avgAccuracy: 0, bestTopic: 'None' });
     const [history, setHistory] = useState([]);
+    const [matrix, setMatrix] = useState([]);
+    const [recommendation, setRecommendation] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
@@ -20,6 +24,8 @@ export default function DashboardPage() {
                 if (!res.ok) throw new Error(data.error || 'Failed to load progress data');
                 setSummary(data.summary || {});
                 setHistory(data.history || []);
+                setMatrix(data.matrix || []);
+                setRecommendation(data.recommendation || null);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -43,7 +49,14 @@ export default function DashboardPage() {
     return (
         <div className="container">
             <h1 style={{ marginBottom: '1.5rem', color: 'var(--accent)' }}>📊 Performance Dashboard</h1>
-            
+
+            {/* FEATURE 1: Recommendation Card */}
+            <RecommendationCard
+                recommendation={recommendation}
+                onStart={onStartRecommended}
+            />
+
+            {/* Stat Cards */}
             <div className="stats-grid">
                 <div className="stat-card" style={{ borderLeft: '4px solid var(--accent)' }}>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
@@ -65,6 +78,9 @@ export default function DashboardPage() {
                 </div>
             </div>
 
+            {/* FEATURE 2: Performance Matrix – always visible */}
+            <PerformanceMatrix matrix={matrix} />
+
             {history.length === 0 ? (
                 <div className="auth-box" style={{ textAlign: 'center', marginTop: '2rem' }}>
                     <p style={{ color: 'var(--text-muted)' }}>No quiz attempts yet — go take a quiz!</p>
@@ -74,7 +90,7 @@ export default function DashboardPage() {
                     <ScoreChart history={history} />
 
                     <div style={{ marginTop: '2rem' }}>
-                        <h3 style={{ marginBottom: '1rem', color: 'var(--text-main)' }}>📋 Recent Quiz Attempts</h3>
+                        <h3 style={{ marginBottom: '1rem', color: 'var(--text-main)' }}>📋 All Quiz Attempts</h3>
                         <table className="data-table">
                             <thead>
                                 <tr>

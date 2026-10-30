@@ -1,0 +1,45 @@
+﻿
+[T1] Register valid user
+  Status  : 
+  Response: {"message":"User registered successfully!"}
+
+[T2] Register duplicate email
+  Status  : 
+  Response: {"error":"Email is already registered"}
+
+[T3] Login valid credentials
+  Status  : 
+  Response: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImVtYWlsIjoidGVzdHVzZXJAdGVzdC5jb20iLCJuYW1lIjoiVGVzdCBVc2VyIiwiaWF0IjoxNzkzMzM5OTg3LCJleHAiOjE3OTMzNDcxODd9.fMsmFA5wkC9wp7-4tH4P1MqZwmw9-7mJDw-S_iqFupA","user":{"id":12,"name":"Test User","email":"testuser@test.com"}}
+
+[T4] Login wrong password
+  Status  : 
+  Response: {"error":"Invalid email or password"}
+
+[T5] Fetch questions - no token
+  Status  : 
+  Response: {"error":"Access denied. No token provided."}
+
+[T6] Fetch questions - valid token
+  Status  : 
+  Response: {"questions":[{"id":1,"topic":"Percentages","difficulty":"Easy","question_text":"What is 20% of 450?","option_a":"80","option_b":"90","option_c":"100","option_d":"95","correct_option":"B","explanation":"20% of 450 = (20/100) * 450 = 90."}]}
+
+[T8] Submit quiz 0/1 correct (0%, same difficulty)
+  Status  : 
+  Response: {"message":"Quiz submitted successfully","score":0,"correct_answers":0,"total_questions":1,"nextDifficulty":"Easy"}
+
+[T9] Submit quiz 1/1 correct (100%, next difficulty)
+  Status  : 
+  Response: {"message":"Quiz submitted successfully","score":100,"correct_answers":1,"total_questions":1,"nextDifficulty":"Medium"}
+
+[T10a] Formula card - first call (Gemini or cache)
+  Status  : 
+  Response: {"topic":"Percentages","cards":[{"tag":"Percentage Basics","name":"Basic Percentage Formula","equation":"Percentage = (Part / Whole) x 100","note":"Expresses a portion of a total value as a fraction out of 100. Essential for direct calculation questions in CET."},{"tag":"Percentage Change","name":"Percentage Increase or Decrease","equation":"Percentage Change = ((Final Value - Initial Value) / Initial Value) x 100","note":"Always divide by the original (initial) value. A positive result indicates an increase, while a negative result indicates a decrease."},{"tag":"Successive Change","name":"Successive Percentage Change","equation":"Effective Percentage Change = A + B + ((A x B) / 100)","note":"Applies when a quantity changes by A% and then by B%. Substitute negative values for percentage decreases or discounts."},{"tag":"Product Constancy","name":"Consumption Adjustment for Price Rise","equation":"% Decrease in Consumption = (R / (100 + R)) x 100","note":"If the price of an item increases by R%, reduce consumption by this percentage to keep total expenditure unchanged. If price drops by R%, use (100 - R) in denominator."},{"tag":"Comparative Percentages","name":"Percentage Comparison Between Two Values","equation":"% Difference = ((A - B) / B) x 100","note":"Calculates by how much percentage A is greater than B. The base value in the denominator is always the reference object (after 'than')."},{"tag":"Population & Depreciation","name":"Compounded Change over Time","equation":"Value after n years = P x (1 + R / 100)^n","note":"P is initial value, R is annual rate %, and n is number of years. For depreciation or population decline, replace + R with - R."}]}
+
+[T10b] Formula card - second call (must be cached)
+  Status  : 
+  Response: {"topic":"Percentages","cards":[{"tag":"Percentage Basics","name":"Basic Percentage Formula","equation":"Percentage = (Part / Whole) x 100","note":"Expresses a portion of a total value as a fraction out of 100. Essential for direct calculation questions in CET."},{"tag":"Percentage Change","name":"Percentage Increase or Decrease","equation":"Percentage Change = ((Final Value - Initial Value) / Initial Value) x 100","note":"Always divide by the original (initial) value. A positive result indicates an increase, while a negative result indicates a decrease."},{"tag":"Successive Change","name":"Successive Percentage Change","equation":"Effective Percentage Change = A + B + ((A x B) / 100)","note":"Applies when a quantity changes by A% and then by B%. Substitute negative values for percentage decreases or discounts."},{"tag":"Product Constancy","name":"Consumption Adjustment for Price Rise","equation":"% Decrease in Consumption = (R / (100 + R)) x 100","note":"If the price of an item increases by R%, reduce consumption by this percentage to keep total expenditure unchanged. If price drops by R%, use (100 - R) in denominator."},{"tag":"Comparative Percentages","name":"Percentage Comparison Between Two Values","equation":"% Difference = ((A - B) / B) x 100","note":"Calculates by how much percentage A is greater than B. The base value in the denominator is always the reference object (after 'than')."},{"tag":"Population & Depreciation","name":"Compounded Change over Time","equation":"Value after n years = P x (1 + R / 100)^n","note":"P is initial value, R is annual rate %, and n is number of years. For depreciation or population decline, replace + R with - R."}]}
+
+[T11] Dashboard progress and recommendation
+  Status  : 
+  Response: {"summary":{"totalQuizzes":2,"avgAccuracy":"50","bestTopic":"Percentages"},"history":[{"id":31,"topic":"Percentages","difficulty":"Easy","score":100,"correct_answers":1,"total_questions":1,"created_at":"2026-10-30T00:29:58.000Z"},{"id":30,"topic":"Percentages","difficulty":"Easy","score":0,"correct_answers":0,"total_questions":1,"created_at":"2026-10-30T00:29:56.000Z"}],"matrix":[{"topic":"Percentages","difficulty":"Easy","avg_score":"50","attempts":2}],"recommendation":{"topic":"Percentages","difficulty":"Easy","reason":"Your average score in this topic is 50% ΓÇö below 70%. Focus here to improve!","type":"weak"}}
+

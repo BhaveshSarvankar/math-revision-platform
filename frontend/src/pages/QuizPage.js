@@ -1,6 +1,6 @@
 // frontend/src/pages/QuizPage.js
-// Purpose: Interactive timed quiz component with adaptive difficulty feedback.
-import React, { useState } from 'react';
+// Purpose: Interactive timed quiz component with adaptive difficulty feedback. Accepts an optional `preset` prop from the dashboard recommendation card.
+import React, { useState, useEffect } from 'react';
 import Timer from '../components/Timer';
 
 const TOPICS = [
@@ -10,9 +10,9 @@ const TOPICS = [
     'Mensuration', 'Algebra', 'Data Interpretation', 'Data Sufficiency'
 ];
 
-export default function QuizPage() {
-    const [topic, setTopic] = useState(TOPICS[0]);
-    const [difficulty, setDifficulty] = useState('Easy');
+export default function QuizPage({ preset }) {
+    const [topic, setTopic] = useState(preset?.topic || TOPICS[0]);
+    const [difficulty, setDifficulty] = useState(preset?.difficulty || 'Easy');
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [userAnswers, setUserAnswers] = useState({});
@@ -20,6 +20,12 @@ export default function QuizPage() {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    // FEATURE 1: Apply preset when it changes (e.g. navigating back and choosing a new recommendation)
+    useEffect(() => {
+        if (preset?.topic) setTopic(preset.topic);
+        if (preset?.difficulty) setDifficulty(preset.difficulty);
+    }, [preset]);
 
     // VIVA: Color map for difficulty badge tags
     const getDifficultyColor = (diff) => {
