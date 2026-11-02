@@ -8,7 +8,7 @@ export default function Navbar({ activePage, setActivePage, user, onLogout }) {
 
     return (
         <nav className="navbar">
-            <div className="nav-brand">MAH-MBA-CET Math Practice</div>
+            <div className="nav-brand">AdaptiQuiz</div>
 
             <div className="nav-controls">
                 {/* VIVA: 3-Theme Selector control for Light, Dark, and Night modes */}
